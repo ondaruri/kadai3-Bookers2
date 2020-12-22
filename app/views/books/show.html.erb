@@ -1,0 +1,40 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    <%= render 'users/list', book: @book_new, user: @user %>
+    </div>
+
+<div class="col-md-8 offset-md-1">
+  <h2>Book details</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th></th>
+        <th></th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <td><%= link_to attachment_image_tag(@user, :profile_image, :fill, size:'100x100' , format: 'jpg', fallback: "no_image.jpg"),user_path(@user.id) %><br>
+        <%= link_to @user.name, user_path(@user) %>
+    </td>
+    <td>
+      <%= link_to @book.title, books_path %>
+    </td>
+    <td>
+        <%= @book.body %>
+    </td>
+
+     <% if @book.user == current_user %>
+      <td><%= link_to "Edit", edit_book_path(@book) %></td>
+      <td><%= link_to "Destroy", book_path(@book) , method: :delete, "data-confirm" => "Are you sure?" %></td>
+    <% end %>
+    </tbody>
+  </table>
+ </div>
+</div>
